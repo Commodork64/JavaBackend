@@ -17,7 +17,7 @@ import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
 @Default
-public class TraineeDBRepository implements TraineeRepository {
+public class UserDBRepository implements IUserRepository {
 
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
@@ -25,27 +25,27 @@ public class TraineeDBRepository implements TraineeRepository {
 	@Inject
 	private JSONUtil util;
 	
-	public String getAllTrainees() {
+	public String getAllUsers() {
 		Query query = manager.createQuery("Select a FROM Trainee a");
 		@SuppressWarnings("unchecked")
 		Collection<Trainee> trainees = (Collection<Trainee>) query.getResultList();
 		return util.getJSONForObject(trainees);
 	}
 
-	public Trainee findTrainee(Long id) {
+	public Trainee findUser(Long id) {
 		return manager.find(Trainee.class, id);
 	}
 
 	@Transactional(REQUIRED)
-	public String addTrainee(String trainee) {
+	public String addUser(String trainee) {
 		Trainee aTrainee = util.getObjectForJSON(trainee, Trainee.class);
 		manager.persist(aTrainee);
 		return "{\"message\": \"trainee has been sucessfully added\"}";
 	}
 	
 	@Transactional(REQUIRED)
-	public String updateTrainee(Long id, String trainee) {
-		Trainee traineeInDB = findTrainee(id);
+	public String updateUser(Long id, String trainee) {
+		Trainee traineeInDB = findUser(id);
 		if (traineeInDB != null) {
 			manager.remove(traineeInDB);
 			Trainee traineeUpdateInDB = util.getObjectForJSON(trainee, Trainee.class);
@@ -55,8 +55,8 @@ public class TraineeDBRepository implements TraineeRepository {
 	}
 
 	@Transactional(REQUIRED)
-	public String removeTrainee(Long id) {
-		Trainee traineeInDB = findTrainee(id);
+	public String removeUser(Long id) {
+		Trainee traineeInDB = findUser(id);
 		if (traineeInDB != null) {
 			manager.remove(traineeInDB);
 		}

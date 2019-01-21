@@ -8,48 +8,40 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import com.qa.business.service.TraineeService;
+import com.qa.business.service.UserServiceImplementation;
 
-@Path("/training")
+@Path("/user")
 public class TraineeEndpoints {
 	
 	@Inject
-	private TraineeService service;
+	private UserServiceImplementation service;
 
-	@Path("/getAllTrainees")
+	@Path("/getAllUsers")
 	@GET
 	@Produces({ "application/json" })
 	public String getAllTrainees() {
-		return service.getAllTrainees();
+		return service.getAllUsers();
 	}
 	
-	@Path("/addTrainee/")
+	@Path("/addUser")
 	@POST
 	@Produces({ "application/json" })
-	public String addTrainee(String trainee) {
-		return service.addTrainee(trainee);
+	public String addTrainee(String user) {
+		return service.addUser(user);
 	}
 
-	@Path("/updateTrainee/{id}")
+	@Path("/updateUser/{id}")
 	@POST
 	@Produces({ "application/json" })
-	public String updateTrainee(@PathParam("id") Long id, String trainee) {
-		return service.updateTrainee(id, trainee);
+	public String updateTrainee(@PathParam("id") Long id, String user) {
+		return service.updateUser(id, user);
 	}
 
-	@Path("/removeTrainee/{id}")
+	@Path("/removeUser/{id}")
 	@DELETE
 	@Produces({ "application/json" })
 	public String removeTrainee(@PathParam("id") Long id) {
-		return service.removeTrainee(id);
-	}
-	
-	public TraineeService getService() {
-		return service;
-	}
-
-	public void setService(TraineeService service) {
-		this.service = service;
+		return service.removeUser(id);
 	}
 
 }
