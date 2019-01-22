@@ -2,7 +2,6 @@ package com.qa.business.service;
 
 import javax.inject.Inject;
 
-import com.qa.persistence.domain.User;
 import com.qa.persistence.repository.UserDBRepository;
 
 public class UserServiceImplementation implements IUserService {
@@ -12,10 +11,6 @@ public class UserServiceImplementation implements IUserService {
 	
 	public String getAllUsers() {
 		return userRepo.getAllUsers();
-	}
-
-	public User findUser(Long id) {
-		return userRepo.findUser(id);
 	}
 
 	public String addUser(String user) {
@@ -36,6 +31,10 @@ public class UserServiceImplementation implements IUserService {
 
 	public void setRepo(UserDBRepository repo) {
 		this.userRepo = repo;
+	}
+	
+	public String getAllGames() {
+		return userRepo.getAllGames();
 	}
 
 }

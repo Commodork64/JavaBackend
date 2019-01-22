@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import com.qa.persistence.domain.Game;
 import com.qa.persistence.domain.User;
 import com.qa.util.JSONUtil;
 
@@ -26,10 +27,10 @@ public class UserDBRepository implements IUserRepository {
 	private JSONUtil util;
 	
 	public String getAllUsers() {
-		Query query = manager.createQuery("Select a FROM Game a");
+		Query query = manager.createQuery("Select a FROM User a");
 		@SuppressWarnings("unchecked")
-		Collection<User> games = (Collection<User>) query.getResultList();
-		return util.getJSONForObject(games);
+		Collection<User> result = (Collection<User>) query.getResultList();
+		return util.getJSONForObject(result);
 	}
 
 	public User findUser(Long id) {
@@ -61,6 +62,15 @@ public class UserDBRepository implements IUserRepository {
 			manager.remove(userToDelete);
 		}
 		return "{\"message\": \"user has been sucessfully removed\"}";
+	}
+	
+	@Transactional(REQUIRED)
+	public String getAllGames() {
+		Query query = manager.createQuery("Select a FROM Game a");
+		@SuppressWarnings("unchecked")
+		Collection<Game> result = (Collection<Game>) query.getResultList();
+		return util.getJSONForObject(result);
+	
 	}
 
 	public void setManager(EntityManager manager) {
