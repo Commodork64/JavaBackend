@@ -26,10 +26,10 @@ public class UserDBRepository implements IUserRepository {
 	private JSONUtil util;
 	
 	public String getAllUsers() {
-		Query query = manager.createQuery("Select a FROM Trainee a");
+		Query query = manager.createQuery("Select a FROM Game a");
 		@SuppressWarnings("unchecked")
-		Collection<User> trainees = (Collection<User>) query.getResultList();
-		return util.getJSONForObject(trainees);
+		Collection<User> games = (Collection<User>) query.getResultList();
+		return util.getJSONForObject(games);
 	}
 
 	public User findUser(Long id) {
@@ -37,30 +37,30 @@ public class UserDBRepository implements IUserRepository {
 	}
 
 	@Transactional(REQUIRED)
-	public String addUser(String trainee) {
-		User aTrainee = util.getObjectForJSON(trainee, User.class);
-		manager.persist(aTrainee);
-		return "{\"message\": \"trainee has been sucessfully added\"}";
+	public String addUser(String user) {
+		User newUser = util.getObjectForJSON(user, User.class);
+		manager.persist(newUser);
+		return "{\"message\": \"user has been sucessfully added\"}";
 	}
 	
 	@Transactional(REQUIRED)
-	public String updateUser(Long id, String trainee) {
-		User traineeInDB = findUser(id);
-		if (traineeInDB != null) {
-			manager.remove(traineeInDB);
-			User traineeUpdateInDB = util.getObjectForJSON(trainee, User.class);
-			manager.persist(traineeUpdateInDB);
+	public String updateUser(Long id, String user) {
+		User userInDB = findUser(id);
+		if (userInDB != null) {
+			manager.remove(userInDB);
+			User updatedUser = util.getObjectForJSON(user, User.class);
+			manager.persist(updatedUser);
 		}
-		return "{\"message\": \"trainee has been sucessfully updated\"}";
+		return "{\"message\": \"user has been sucessfully updated\"}";
 	}
 
 	@Transactional(REQUIRED)
 	public String removeUser(Long id) {
-		User traineeInDB = findUser(id);
-		if (traineeInDB != null) {
-			manager.remove(traineeInDB);
+		User userToDelete = findUser(id);
+		if (userToDelete != null) {
+			manager.remove(userToDelete);
 		}
-		return "{\"message\": \"trainee has been sucessfully removed\"}";
+		return "{\"message\": \"user has been sucessfully removed\"}";
 	}
 
 	public void setManager(EntityManager manager) {
