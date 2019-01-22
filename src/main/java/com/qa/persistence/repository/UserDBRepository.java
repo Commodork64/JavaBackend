@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
-import com.qa.persistence.domain.Trainee;
+import com.qa.persistence.domain.User;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
@@ -28,27 +28,27 @@ public class UserDBRepository implements IUserRepository {
 	public String getAllUsers() {
 		Query query = manager.createQuery("Select a FROM Trainee a");
 		@SuppressWarnings("unchecked")
-		Collection<Trainee> trainees = (Collection<Trainee>) query.getResultList();
+		Collection<User> trainees = (Collection<User>) query.getResultList();
 		return util.getJSONForObject(trainees);
 	}
 
-	public Trainee findUser(Long id) {
-		return manager.find(Trainee.class, id);
+	public User findUser(Long id) {
+		return manager.find(User.class, id);
 	}
 
 	@Transactional(REQUIRED)
 	public String addUser(String trainee) {
-		Trainee aTrainee = util.getObjectForJSON(trainee, Trainee.class);
+		User aTrainee = util.getObjectForJSON(trainee, User.class);
 		manager.persist(aTrainee);
 		return "{\"message\": \"trainee has been sucessfully added\"}";
 	}
 	
 	@Transactional(REQUIRED)
 	public String updateUser(Long id, String trainee) {
-		Trainee traineeInDB = findUser(id);
+		User traineeInDB = findUser(id);
 		if (traineeInDB != null) {
 			manager.remove(traineeInDB);
-			Trainee traineeUpdateInDB = util.getObjectForJSON(trainee, Trainee.class);
+			User traineeUpdateInDB = util.getObjectForJSON(trainee, User.class);
 			manager.persist(traineeUpdateInDB);
 		}
 		return "{\"message\": \"trainee has been sucessfully updated\"}";
@@ -56,7 +56,7 @@ public class UserDBRepository implements IUserRepository {
 
 	@Transactional(REQUIRED)
 	public String removeUser(Long id) {
-		Trainee traineeInDB = findUser(id);
+		User traineeInDB = findUser(id);
 		if (traineeInDB != null) {
 			manager.remove(traineeInDB);
 		}

@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import com.qa.business.service.UserServiceImplementation;
 
 @Path("/user")
-public class TraineeEndpoints {
+public class UserEndpoints {
 	
 	@Inject
 	private UserServiceImplementation service;

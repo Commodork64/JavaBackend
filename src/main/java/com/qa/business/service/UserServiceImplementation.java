@@ -2,7 +2,7 @@ package com.qa.business.service;
 
 import javax.inject.Inject;
 
-import com.qa.persistence.domain.Trainee;
+import com.qa.persistence.domain.User;
 import com.qa.persistence.repository.UserDBRepository;
 
 public class UserServiceImplementation implements IUserService {
@@ -14,7 +14,7 @@ public class UserServiceImplementation implements IUserService {
 		return userRepo.getAllUsers();
 	}
 
-	public Trainee findUser(Long id) {
+	public User findUser(Long id) {
 		return userRepo.findUser(id);
 	}
 
