@@ -30,7 +30,7 @@ public class User {
 			
 	)
 	@JoinColumn(name = "userid")
-	private ArrayList<Game> games = new ArrayList<>();
+	private ArrayList<Long> games = new ArrayList<Long>();
 	
 	
 
@@ -78,12 +78,8 @@ public class User {
 		this.password = password;
 	}
 
-	public ArrayList<Game> getGames() {
+	public ArrayList<Long> getGames() {
 		return games;
-	}
-
-	public void setGames(ArrayList<Game> games) {
-		this.games = games;
 	}
 	
 }
