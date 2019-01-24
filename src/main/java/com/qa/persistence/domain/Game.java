@@ -22,9 +22,7 @@ public class Game {
 	private String releaseYear;
 	private String genre;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "userid")
-	private User user;
+	private Long userid;
 	
 	public Game(Long gameid, String gameName, String releaseYear, String genre) {
 		this.gameid = gameid;

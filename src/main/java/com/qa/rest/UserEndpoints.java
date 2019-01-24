@@ -19,28 +19,28 @@ public class UserEndpoints {
 	@Path("/getAllUsers")
 	@GET
 	@Produces({ "application/json" })
-	public String getAllTrainees() {
+	public String getAllUsers() {
 		return service.getAllUsers();
 	}
 	
 	@Path("/addUser")
 	@POST
 	@Produces({ "application/json" })
-	public String addTrainee(String user) {
+	public String addUser(String user) {
 		return service.addUser(user);
 	}
 
 	@Path("/updateUser/{id}")
 	@POST
 	@Produces({ "application/json" })
-	public String updateTrainee(@PathParam("id") Long id, String user) {
+	public String updateUser(@PathParam("id") Long id, String user) {
 		return service.updateUser(id, user);
 	}
 
 	@Path("/removeUser/{id}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String removeTrainee(@PathParam("id") Long id) {
+	public String removeUser(@PathParam("id") Long id) {
 		return service.removeUser(id);
 	}
 
