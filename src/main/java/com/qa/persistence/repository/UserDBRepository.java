@@ -27,7 +27,7 @@ public class UserDBRepository implements IUserRepository {
 	private JSONUtil util;
 	
 	public String getAllUsers() {
-		Query query = manager.createQuery("Select a FROM User a");
+		Query query = manager.createQuery("Select a FROM User a JOIN Game g ON a.games g");
 		@SuppressWarnings("unchecked")
 		Collection<User> result = (Collection<User>) query.getResultList();
 		return util.getJSONForObject(result);

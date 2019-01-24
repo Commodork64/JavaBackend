@@ -1,9 +1,12 @@
 package com.qa.persistence.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -18,6 +21,10 @@ public class Game {
 	private String gameName;
 	private String releaseYear;
 	private String genre;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userid")
+	private User user;
 	
 	public Game(Long gameid, String gameName, String releaseYear, String genre) {
 		this.gameid = gameid;
