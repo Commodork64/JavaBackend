@@ -27,6 +27,10 @@ public class User {
 	@JoinColumn(name = "userid")
 	private Set<Game> games;
 	
+	public void setGames(Set<Game> games) {
+		this.games = games;
+	}
+
 	public Set<Game> getGames() {
 		return games;
 	}

@@ -28,8 +28,8 @@ public class UserEndpoints {
 	@POST
 	@Produces({ "application/json" })
 	public String addUser(String user) {
-		return service.addUser(user);
-	}
+			return service.addUser(user);
+		}
 
 	@Path("/updateUser/{id}")
 	@PUT
