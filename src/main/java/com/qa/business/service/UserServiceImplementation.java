@@ -15,12 +15,7 @@ public class UserServiceImplementation implements IUserService {
 
 	public String addUser(String user) {
 		
-		if (user.contains(userRepo.getUsernameList().toString())) {
-					return "{\\\"message\\\": \\\"userName already taken!\\\"}\"";
-				}
-			else {
-				return userRepo.addUser(user);
-			}
+		return userRepo.addUser(user);
 	}
 
 	public String updateUser(Long id, String user) {
