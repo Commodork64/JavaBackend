@@ -26,10 +26,20 @@ public class UserServiceImplementation implements IUserService {
 	}
 
 	public String updateUser(Long id, String user) {
+		
+		if (id == 1) {
+			return "admin cannot be updated.";
+		}
+		
 		return userRepo.updateUser(id, user);
 	}
 
 	public String removeUser(Long id) {
+		
+		if (id == 1) {
+			return "admin cannot be removed.";
+		}
+		
 		return userRepo.removeUser(id);
 	}
 
