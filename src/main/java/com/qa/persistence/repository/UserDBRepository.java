@@ -35,7 +35,7 @@ public class UserDBRepository implements IUserRepository {
 		return util.getJSONForObject(result);
 	}
 	
-	public ArrayList<String> getUsernameList() {
+	public String getUsernameList() {
 
 		List<User> results = manager
                 .createQuery("Select a from User a", User.class)
@@ -46,16 +46,16 @@ public class UserDBRepository implements IUserRepository {
 			userNames.add(user.getUserName());
 		}
 		
-		return userNames;
-	}
+		return listToString(userNames);
+	} 
 	
-//	private String listToString(List<?> list) {
-//	    String result = "";
-//	    for (int i = 0; i < list.size(); i++) {
-//	        result += " " + list.get(i);
-//	    }
-//	    return result;
-//	}
+	private String listToString(List<?> list) {
+		String result = "";
+		for (int i = 0; i < list.size(); i++) {
+			result += " " + list.get(i);
+		}
+		return result;
+	}
 
 	public User findUser(Long id) {
 		return manager.find(User.class, id);
@@ -64,11 +64,11 @@ public class UserDBRepository implements IUserRepository {
 	@Transactional(REQUIRED)
 	public String addUser(String user) {
 		User newUser = util.getObjectForJSON(user, User.class);
-		for(int i = 0; i <= getUsernameList().size() - 1; i++) {
-			if (newUser.getUserName().equals(getUsernameList().get(i))) {
-				return "{\"message\": \"username already taken!\"}";
-			}
-		}
+//		for(int i = 0; i <= getUsernameList().size() - 1; i++) {
+//			if (newUser.getUserName().equals(getUsernameList().get(i))) {
+//				return "{\"message\": \"username already taken!\"}";
+//			}
+//		}
 		manager.persist(newUser);
 		return "{\"message\": \"user has been sucessfully added\"}";
 	}

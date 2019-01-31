@@ -2,6 +2,8 @@ package com.qa.business.service;
 
 import javax.inject.Inject;
 
+import com.google.gson.Gson;
+import com.qa.persistence.domain.User;
 import com.qa.persistence.repository.UserDBRepository;
 
 public class UserServiceImplementation implements IUserService {
@@ -14,7 +16,12 @@ public class UserServiceImplementation implements IUserService {
 	}
 
 	public String addUser(String user) {
+		Gson gson = new Gson();
+		User tempUser = gson.fromJson(user, User.class);
 		
+		if (userRepo.getUsernameList().contains(tempUser.getUserName())) {
+			return "unluckee";
+		}
 		return userRepo.addUser(user);
 	}
 
