@@ -64,11 +64,6 @@ public class UserDBRepository implements IUserRepository {
 	@Transactional(REQUIRED)
 	public String addUser(String user) {
 		User newUser = util.getObjectForJSON(user, User.class);
-//		for(int i = 0; i <= getUsernameList().size() - 1; i++) {
-//			if (newUser.getUserName().equals(getUsernameList().get(i))) {
-//				return "{\"message\": \"username already taken!\"}";
-//			}
-//		}
 		manager.persist(newUser);
 		return "{\"message\": \"user has been sucessfully added\"}";
 	}
