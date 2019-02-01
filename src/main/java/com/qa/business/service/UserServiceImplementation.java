@@ -20,7 +20,7 @@ public class UserServiceImplementation implements IUserService {
 		User tempUser = gson.fromJson(user, User.class);
 		
 		if (userRepo.getUsernameList().contains(tempUser.getUserName())) {
-			return "unluckee";
+			return "user already exists!";
 		}
 		return userRepo.addUser(user);
 	}
