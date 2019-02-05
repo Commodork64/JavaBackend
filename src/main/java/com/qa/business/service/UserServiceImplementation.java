@@ -4,15 +4,19 @@ import javax.inject.Inject;
 
 import com.google.gson.Gson;
 import com.qa.persistence.domain.User;
-import com.qa.persistence.repository.UserDBRepository;
+import com.qa.persistence.repository.UserDBRepositoryImplementation;
 
 public class UserServiceImplementation implements IUserService {
 
 	@Inject
-	private UserDBRepository userRepo;
+	private UserDBRepositoryImplementation userRepo;
 	
 	public String getAllUsers() {
 		return userRepo.getAllUsers();
+	}
+
+	public String getGamesOfUser(Long id) {
+		return userRepo.getGamesOfUser(id);
 	}
 
 	public String addUser(String user) {
@@ -43,11 +47,11 @@ public class UserServiceImplementation implements IUserService {
 		return userRepo.removeUser(id);
 	}
 
-	public UserDBRepository getRepo() {
+	public UserDBRepositoryImplementation getRepo() {
 		return userRepo;
 	}
 
-	public void setRepo(UserDBRepository repo) {
+	public void setRepo(UserDBRepositoryImplementation repo) {
 		this.userRepo = repo;
 	}
 	

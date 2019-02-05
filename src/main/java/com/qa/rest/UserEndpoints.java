@@ -23,6 +23,13 @@ public class UserEndpoints {
 	public String getAllUsers() {
 		return service.getAllUsers();
 	}
+
+	@Path("/getGamesForUser/{id}")
+	@GET
+	@Produces({ "application/json" })
+	public String getGamesOfUser(@PathParam("id") Long id) {
+		return service.getGamesOfUser(id);
+	}
 	
 	@Path("/addUser")
 	@POST

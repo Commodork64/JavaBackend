@@ -20,7 +20,7 @@ import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
 @Default
-public class UserDBRepository implements IUserRepository {
+public class UserDBRepositoryImplementation implements IUserRepository {
 
 	@PersistenceContext(unitName = "primary")
 	private EntityManager manager;
@@ -32,6 +32,12 @@ public class UserDBRepository implements IUserRepository {
 		Query query = manager.createQuery("Select a FROM User a");
 		@SuppressWarnings("unchecked")
 		Collection<User> result = (Collection<User>) query.getResultList();
+		return util.getJSONForObject(result);
+	}
+
+	public String getGamesOfUser(Long id) {
+		Query query = manager.createQuery("Select g FROM Game g WHERE userid = " + id);
+		Collection<Game> result = (Collection<Game>) query.getResultList();
 		return util.getJSONForObject(result);
 	}
 	
