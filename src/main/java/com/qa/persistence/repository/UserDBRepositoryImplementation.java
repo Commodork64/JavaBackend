@@ -49,7 +49,8 @@ public class UserDBRepositoryImplementation implements IUserRepository {
 	}
 
 	public String removeGame(Long id) {
-		Game gameToRemove = manager.createQuery("Select g FROM Game g WHERE userid " + id);
+		Query query = manager.createQuery("Select g FROM Game g WHERE userid " + id);
+		return "Game removed from list.";
 	}
 	
 	public String getUsernameList() {
