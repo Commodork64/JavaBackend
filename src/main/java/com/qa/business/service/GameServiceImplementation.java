@@ -13,4 +13,12 @@ public class GameServiceImplementation {
 		return gameRepo.getAllGames();
 	}
 
+	public String addGame(Long id, String game) {
+		return gameRepo.addGame(id, game);
+	}
+
+	public String removeGame(Long id) {
+		return gameRepo.removeGame(id);
+	}
+
 }

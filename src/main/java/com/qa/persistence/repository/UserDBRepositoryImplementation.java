@@ -40,18 +40,6 @@ public class UserDBRepositoryImplementation implements IUserRepository {
 		Collection<Game> result = (Collection<Game>) query.getResultList();
 		return util.getJSONForObject(result);
 	}
-
-	public String addGame(Long id, String game) {
-		Game gameToAdd = util.getObjectForJSON(game);
-		gameToAdd.setUserid(id);
-		manager.persist(gameToAdd);
-		return "Game added to list.";
-	}
-
-	public String removeGame(Long id) {
-		Query query = manager.createQuery("Select g FROM Game g WHERE userid " + id);
-		return "Game removed from list.";
-	}
 	
 	public String getUsernameList() {
 

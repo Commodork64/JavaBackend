@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import com.qa.persistence.domain.Game;
 import com.qa.persistence.domain.User;
 import com.qa.util.JSONUtil;
 
@@ -29,6 +30,18 @@ public class GameDBRepository {
 		@SuppressWarnings("unchecked")
 		Collection<User> result = (Collection<User>) query.getResultList();
 		return util.getJSONForObject(result);
+	}
+
+	public String addGame(Long id, String game) {
+		Game gameToAdd = util.getObjectForJSON(game, Game.class);
+		gameToAdd.setUserid(id);
+		manager.persist(gameToAdd);
+		return "Game added to list.";
+	}
+
+	public String removeGame(Long id) {
+		Query query = manager.createQuery("Select g FROM Game g WHERE userid = " + id);
+		return "Game removed from list.";
 	}
 
 }
