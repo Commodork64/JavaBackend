@@ -23,11 +23,11 @@ public class GameEndpoints {
 		return service.getAllGames();
 	}
 
-	@Path("/addGame/{id}")
+	@Path("/addGame")
 	@POST
 	@Produces({ "application/json "})
-	public String addGame(@PathParam("id") Long id, String game) {
-		return service.addGame(id, game);
+	public String addGame(String game) {
+		return service.addGame(game);
 	}
 
 	@Path("/removeGame/{id}")

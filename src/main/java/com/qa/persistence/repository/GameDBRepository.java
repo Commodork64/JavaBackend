@@ -32,9 +32,9 @@ public class GameDBRepository {
 		return util.getJSONForObject(result);
 	}
 
-	public String addGame(Long id, String game) {
+	public String addGame(String game) {
 		Game gameToAdd = util.getObjectForJSON(game, Game.class);
-		gameToAdd.setUserid(id);
+		//gameToAdd.setUserid(id);
 		manager.persist(gameToAdd);
 		return "Game added to list.";
 	}
