@@ -19,5 +19,19 @@ public class GameEndpoints {
 	public String getAllGames() {
 		return service.getAllGames();
 	}
+
+	@Path("/addGame/{id}")
+	@GET
+	@Produces({ "application/json "})
+	public String addGame(@PathParam("id") Long id, String game) {
+		return service.addGame(id, game);
+	}
+
+	@Path("/removeGame/{id}")
+	@GET
+	@Produces({ "application/json "})
+	public String removeGame(@PathParam("id") Long id) {
+		return service.removeGame(id);
+	}
 	
 }

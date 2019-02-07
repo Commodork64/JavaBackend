@@ -19,6 +19,10 @@ public class UserServiceImplementation implements IUserService {
 		return userRepo.getGamesOfUser(id);
 	}
 
+	public String addGame(Long id, String game) {
+		return userRepo.addGame(id, game);
+	}
+
 	public String addUser(String user) {
 		Gson gson = new Gson();
 		User tempUser = gson.fromJson(user, User.class);
