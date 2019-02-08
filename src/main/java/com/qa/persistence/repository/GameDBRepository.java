@@ -40,7 +40,10 @@ public class GameDBRepository {
 	}
 
 	public String removeGame(Long id) {
-		Query query = manager.createQuery("Select g FROM Game g WHERE userid = " + id);
+		Game gameToDelete = (Game) manager.createQuery("Select g FROM Game g WHERE gameid = " + id).getSingleResult();
+		if (gameToDelete != null) {
+			manager.remove(gameToDelete);
+		}
 		return "Game removed from list.";
 	}
 
